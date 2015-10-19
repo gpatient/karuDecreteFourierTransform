@@ -4,7 +4,7 @@
  * @name karuDecreteFourierTransform
  * @license gpatient
  * @author gpatient
- * @version 0.0.008
+ * @version 0.0.011
  */
  
  
@@ -60,8 +60,9 @@ var kdft={
 		var pos=0;
 		for(i=0;i<tlen;i++){
 		 this.tables[0][j][i]=this.tableMain[0][pos];
-		 this.tables[0][j][i]=this.tableMain[0][pos];
+		 this.tables[1][j][i]=this.tableMain[1][pos];
 		 pos+=(j+1);
+		 pos%=tlen;
 		}
 	   }
     };
@@ -99,18 +100,20 @@ var kdft={
 		var tableLen=this.tableLen;
 		blen=tableLen*this.resultTables[0].length;
 		var abuf=new Float32Array(blen);
-		while(pos+tableLen<blen){
-		for(i=0;i<tableLen;i++){
 
-			for(j=0;j<tableLen;j++){
-				abuf[j+pos]+=this.resultTables[0][pp][i]*this.tables[0][i][j];
-				abuf[j+pos]+=this.resultTables[1][pp][i]*this.tables[1][i][j];
+    for(i=0;i<blen;i++)abuf[i]=0;
+			while(pos+tableLen<blen){
+		  for(i=0;i<tableLen;i++){
+			  for(j=0;j<tableLen;j++){
+				  abuf[j+pos]+=this.resultTables[0][pp][i]*this.tables[0][i][j];
+				  abuf[j+pos]+=this.resultTables[1][pp][i]*this.tables[1][i][j];
 				
-			}
+			  }
 			
-		}
+		  }
 		pp++;
 		pos+=tableLen;
+		
 		}
 		return abuf;
 	};
@@ -123,9 +126,8 @@ endObject:0
 };
 var kdftCode=kdft.mainCode();
 kdftCode.initTables(100);
-//kdftCode.dft(qqq.ttwbuf);
+//kdftCode.dft(qqq.ttwBuf);
 var testBuf=kdftCode.ift();
-
 this.dsp=function(t){
   var out=0;
   out=qqq.dsp(t);
