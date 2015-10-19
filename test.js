@@ -13,7 +13,7 @@ var tt=new Array(1);
 tt[20]=0.123;
 tt[22]=0.124;
 tt[23]=0.125;
-dbg('karuDecreteFourierTransformbb ')(qqq.ver+ " "+tt[23]);
+dbg('karuDecreteFourierTransformbb1 ')(qqq.ver+ " "+tt.length);
 
 export function dsp(t)
 {
