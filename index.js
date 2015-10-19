@@ -4,7 +4,7 @@
  * @name karuDecreteFourierTransform
  * @license gpatient
  * @author gpatient
- * @version 0.0.001
+ * @version 0.0.002
  */
  
  
@@ -21,7 +21,7 @@ function karuDecreteFourierTransform(){
   if (!(this instanceof karuDecreteFourierTransform)) return new karuDecreteFourierTransform();
 }
 karuDecreteFourierTransform.prototype.qwer=function(){
-
+var rrrr='qwer 5'
 
 
 this.dsp=function(t){
